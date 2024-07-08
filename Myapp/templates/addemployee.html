@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>mysalary</title>
+    <style>
+        .column{
+            margin:150px auto auto 150px;
+
+        }
+    </style>
+</head>
+<body>
+{% include 'header.html' %}
+<form action="addemployee" method="post">
+    {% csrf_token %}
+<div class="column"> 
+     <label for="fname">First name:</label><br>
+    <input type="text" id="firstname" name="firstname" required><br>
+    <label for="lname">Last name:</label><br>
+    <input type="text" id="lastname" name="lastname" required><br>
+    <label for="phone">Phone number:</label><br>
+    <input type="tel" id="phone" name="phonenumber" required><br>
+    <label for="gender">Gender:</label><br>
+    <div style="display:flex; flex-direction:row; gap:2px;"> 
+        Male <input type="radio" name="gender" value="M" required>
+        Female <input type="radio" name="gender" value="F" required>
+    </div>
+    <label for="salary">Salary:</label><br>
+    <input type="number"   name="salary" required><br>
+     <div>
+   <button class='add-user-btn type='submit name='addEmployee'> AddEmployee </button>
+    </div>
+</div>    
+</form>
+<table>
+    <tr>
+    <th>fname</th>
+    <th>lname</th>
+    <th>phone</th>
+    <th>gener</th>
+    <th>salary</th>
+    </tr>
+    {% for employee in employee %}
+    <tr>
+        <td>{{employee.first_name}}</td>
+        <td>{{employee.last_name}}</td>
+        <td>{{employee.phone_number}}</td>
+        <td>{{employee.gender}}</td>
+        <td>{{employee.salary}}</td>
+
+    </tr>
+    {% endfor %}
+</table>
+    {% include 'footer.html' %}
+</body>
+</html>
